@@ -1,5 +1,21 @@
 angular.module('starter.services', [])
 
+
+.service('FirebaseSvc', function ($firebaseArray,$firebaseObject) {
+  var FireBaseRef = firebase.database().ref();
+
+  var REFS = {
+      root : FireBaseRef,
+      trades : FireBaseRef.child("trades")
+  };
+
+  return {
+    getTrades : function() {
+      return $firebaseArray(REFS.trades);
+    },
+  };
+})
+
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
 
