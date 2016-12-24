@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('PositionsCtrl', function($scope, FirebaseSvc) {
+.controller('PositionsCtrl', function($scope, Trades) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -9,11 +9,11 @@ angular.module('starter.controllers', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 
-  $scope.trades = FirebaseSvc.getTrades();
+  $scope.trades = Trades.getAll();
 
-  $scope.remove = function(chat) {
-    Positions.remove(chat);
-  };
+  $scope.add = function() { Trades.details(null,$scope.trades); };
+  $scope.update = function(trade) { Trades.details(trade,$scope.trades); };
+
 })
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Positions) {

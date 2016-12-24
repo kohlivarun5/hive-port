@@ -1,0 +1,28 @@
+<ion-modal-view>
+
+  <ion-header-bar class="bar bar-header bar-positive">
+    <button class="button button-clear button-primary" ng-click="modal.remove()">Cancel</button>
+    <h1 class="title">{{trade.$id ? "Update Trade" : "New Trade"}}</h1>
+  </ion-header-bar>
+
+  <ion-content>
+    <div class="list">
+      <label class="item item-input">
+        <span class="input-label">Ticker</span>
+        <input type="text" ng-model="trade.ticker">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Quantity</span>
+        <input type="tel" ng-model="trade.quantity">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Total Cost</span>
+        <input type="tel" ng-model="trade.total_cost">
+      </label>
+    </div>
+    <button class="button button-full button-positive" ng-click="submit()">
+      Submit
+    </button>
+
+  </ion-content>
+</ion-modal-view>
