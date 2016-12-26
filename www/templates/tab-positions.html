@@ -5,11 +5,22 @@
 
   <ion-content>
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="trade in trades" type="item-text-wrap">
-        <h2>{{trade.ticker}}</h2>
-        <p>{{trade.quantity}}</p>
-        <p>{{trade.total_cost}}</p>
+      <ion-item class="item-divider item-remove-animate item-avatar item-icon-right">
+        <div class="row">
+          <div class="col">Ticker</div>
+          <div class="col">Quantity</div>
+          <div class="col">Cost</div>
+        </div>
+      </ion-item>
 
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="trade in trades" type="item-text-wrap">
+        <div class="row">
+          <h2 class="col">{{trade.ticker}}</h2>
+          <p class="col">{{trade.quantity}}</p>
+          <p class="col">{{trade.total_cost}}</p>
+        </div>
+
+        <ion-option-button class="button-assertive" ng-click="delete(trade)"> Delete </ion-option-button>
         <ion-option-button class="button-energized" ng-click="update(trade)"> Update </ion-option-button>
       </ion-item>
     </ion-list>

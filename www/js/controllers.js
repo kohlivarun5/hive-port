@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('PositionsCtrl', function($scope, Trades) {
+.controller('PositionsCtrl', function($scope, $ionicListDelegate, Trades) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -11,8 +11,13 @@ angular.module('starter.controllers', [])
 
   $scope.trades = Trades.getAll();
 
-  $scope.add = function() { Trades.details(null,$scope.trades); };
-  $scope.update = function(trade) { Trades.details(trade,$scope.trades); };
+  $scope.add = function() { 
+    $ionicListDelegate.closeOptionButtons(); Trades.details(null,$scope.trades); 
+  };
+  $scope.update = function(trade) { 
+    $ionicListDelegate.closeOptionButtons();
+    Trades.details(trade,$scope.trades); 
+  };
 
 })
 
