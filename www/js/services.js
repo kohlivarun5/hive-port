@@ -42,16 +42,13 @@ angular.module('starter.services', [])
       modalScope.submit = function() {
         console.log(modalScope.trade);
         if (!trade) { 
-          allTrades.$add(modalScope.trade).then(function() { allTrades.$save(); modal.hide(); });
+          allTrades.$add(modalScope.trade).then(function() { modal.hide(); });
         }
         else {
-          allTrades[trade.$id] = modalScope.trade;
-          allTrades.$save().then(function() { modal.hide(); });
+          allTrades.$save(modalScope.trade).then(function() { modal.hide(); });
         }
-        modal.hide();
       };
       modal.show();
-
     });
   };
 

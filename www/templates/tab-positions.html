@@ -1,6 +1,9 @@
 <ion-view view-title="Positions">
+  <ion-nav-buttons side="right">
+    <button class="button button-icon ion-android-add-circle" ng-click="add()"> </button>
+  </ion-nav-buttons>
+
   <ion-content>
-    <button class="button button-full button-positive" ng-click="add()"> Add trade </button>
     <ion-list>
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="trade in trades" type="item-text-wrap">
         <h2>{{trade.ticker}}</h2>
