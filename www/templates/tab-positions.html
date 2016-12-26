@@ -5,24 +5,49 @@
 
   <ion-content>
     <ion-list>
-      <ion-item class="item-divider item-remove-animate item-avatar item-icon-right">
+
+    <ion-item class="item-avatar item-icon-right item-divider">
+      <div class="row">
+        <div class="col">Ticker</div>
+        <div class="col">Quantity</div>
+        <div class="col">Cost</div>
+      </div>
+    </ion-item>
+    <div ng-repeat="(ticker,trades) in trades | groupBy: 'ticker'" >
+
+      <ion-item 
+            class="item-avatar item-icon-right"
+            on-tap="toggleTicker(ticker)">
         <div class="row">
-          <div class="col">Ticker</div>
-          <div class="col">Quantity</div>
-          <div class="col">Cost</div>
+          <div class="col col-33">{{ticker}}</div>
+          <div class="col col-33">{{trades | map: 'quantity' | sum}}</div>
+          <div class="col col-33">{{trades | map: 'total_cost' | sum | number: 2}}</div>
         </div>
       </ion-item>
 
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="trade in trades" type="item-text-wrap">
-        <div class="row">
-          <h2 class="col">{{trade.ticker}}</h2>
-          <p class="col">{{trade.quantity}}</p>
-          <p class="col">{{trade.total_cost}}</p>
-        </div>
+      <div ng-if="showTickerTrades[ticker]">
+        <ion-item class="item-divider item-avatar item-icon-right">
+          <div class="row">
+            <div class="col">Quantity</div>
+            <div class="col">Cost</div>
+          </div>
+        </ion-item>
+        <ion-item class="item-avatar item-icon-right item-stable" type="item-text-wrap"
+                  ng-repeat="trade in trades">
+          <div class="row">
+            <p class="col">{{trade.quantity}}</p>
+            <p class="col">{{trade.total_cost | number: 2}}</p>
+          </div>
+          <ion-option-button class="button-assertive" ng-click="delete(trade)"> 
+            Delete 
+          </ion-option-button>
+          <ion-option-button class="button-energized" ng-click="update(trade)"> 
+            Update 
+          </ion-option-button>
+        </ion-item>
+      </div>
+    </div>
 
-        <ion-option-button class="button-assertive" ng-click="delete(trade)"> Delete </ion-option-button>
-        <ion-option-button class="button-energized" ng-click="update(trade)"> Update </ion-option-button>
-      </ion-item>
     </ion-list>
   </ion-content>
 </ion-view>

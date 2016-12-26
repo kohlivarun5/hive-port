@@ -23,6 +23,10 @@ angular.module('starter.services', [])
 
   this.getAll = FirebaseSvc.getTrades;
 
+  this.delete = function(trade,allTrades) {
+    allTrades.$remove(trade);
+  };
+
   this.details = function(trade,allTrades) {
     var modalScope = $rootScope.$new(true);
     modalScope.trade = trade || {
@@ -41,6 +45,8 @@ angular.module('starter.services', [])
 
       modalScope.submit = function() {
         console.log(modalScope.trade);
+        modalScope.trade.quantity=parseInt(modalScope.trade.quantity);
+        modalScope.trade.total_cost=parseFloat(modalScope.trade.total_cost);
         if (!trade) { 
           allTrades.$add(modalScope.trade).then(function() { modal.hide(); });
         }

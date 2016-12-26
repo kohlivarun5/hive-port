@@ -11,13 +11,24 @@ angular.module('starter.controllers', [])
 
   $scope.trades = Trades.getAll();
 
+  $scope.showTickerTrades = {};
+  $scope.toggleTicker = function (ticker) {
+    $scope.showTickerTrades[ticker] = !$scope.showTickerTrades[ticker];
+  };
+
   $scope.add = function() { 
-    $ionicListDelegate.closeOptionButtons(); Trades.details(null,$scope.trades); 
+    Trades.details(null,$scope.trades); 
   };
   $scope.update = function(trade) { 
     $ionicListDelegate.closeOptionButtons();
     Trades.details(trade,$scope.trades); 
   };
+
+  $scope.delete = function(trade) { 
+    $ionicListDelegate.closeOptionButtons();
+    Trades.delete(trade,$scope.trades); 
+  };
+
 
 })
 
