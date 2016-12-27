@@ -22,9 +22,14 @@ $energized:                       #FF9F55 !default;
 $assertive:                       #FC575E !default;
 $stable:                          #D8E2EC !default;
 
+$balanced:                        #2CC990 !default;
+
 .fill-stable,ion-content {
   background-color:$stable !important;
 }
+
+.price-up { color:$balanced !important; font-weight:bold !important; }
+.price-down { color:$assertive !important; font-weight:bold !important; }
 
 
 // Include all of Ionic

@@ -58,4 +58,27 @@ angular.module('starter.services', [])
     });
   };
 
-});
+})
+
+.service('StockPrices',function($http) {
+
+  var fixedEncodeURIComponent = function(str) {
+        return encodeURIComponent(str)
+                .replace(/[!'()]/g, escape)
+                .replace(/\*/g, "%2A")
+                .replace(/\"/g, "%22");
+    };
+    var format = '&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=JSON_CALLBACK';
+
+  this.get = function (ticker,callback) {
+    var query = 'select Change,LastTradePriceOnly from yahoo.finance.quote where symbol = "' + ticker + '"';
+    var url = 'http://query.yahooapis.com/v1/public/yql?q=' + fixedEncodeURIComponent(query) + format;
+    console.log(url);
+    $http.jsonp(url).success(function(data) {
+      console.log(data);
+      callback(data.query.results.quote.LastTradePriceOnly,
+               data.query.results.quote.Change);
+    });
+  };
+})
+;
