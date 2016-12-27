@@ -8,10 +8,10 @@ angular.module('starter.directives', [])
       total_cost: "="
     },
     link: function(scope) {
-      console.log(scope);
       StockPrices.get(scope.ticker,function(price,change) {
         scope.price=price;
         scope.change=change;
+        console.log(scope);
       });
     }
   };
