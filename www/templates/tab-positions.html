@@ -6,34 +6,26 @@
   <ion-content>
     <ion-list>
 
-    <ion-item class="item-avatar item-icon-right item-divider">
-      <div class="row">
-        <div class="col">Ticker</div>
-        <div class="col">Quantity</div>
-        <div class="col">Cost</div>
-      </div>
-    </ion-item>
-    <div ng-repeat="(ticker,trades) in trades | groupBy: 'ticker'" >
+    <div class="list card rounded"
+         ng-repeat="(ticker,trades) in trades | groupBy: 'ticker'" >
 
-      <ion-item 
-            class="item-avatar item-icon-right"
-            on-tap="toggleTicker(ticker)">
+
+      <ion-item on-tap="toggleTicker(ticker)">
         <div class="row">
-          <div class="col col-33">{{ticker}}</div>
+          <div class="col col-33">${{ticker}}</div>
           <div class="col col-33">{{trades | map: 'quantity' | sum}}</div>
           <div class="col col-33">{{trades | map: 'total_cost' | sum | number: 2}}</div>
         </div>
       </ion-item>
 
       <div ng-if="showTickerTrades[ticker]">
-        <ion-item class="item-divider item-avatar item-icon-right">
-          <div class="row">
+        <ion-item class="item-avatar item-divider">
+          <div class="row item-divider" >
             <div class="col">Quantity</div>
             <div class="col">Cost</div>
           </div>
         </ion-item>
-        <ion-item class="item-avatar item-icon-right item-stable" type="item-text-wrap"
-                  ng-repeat="trade in trades">
+        <ion-item class="item-avatar" ng-repeat="trade in trades">
           <div class="row">
             <p class="col">{{trade.quantity}}</p>
             <p class="col">{{trade.total_cost | number: 2}}</p>

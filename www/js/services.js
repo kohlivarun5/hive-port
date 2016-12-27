@@ -35,7 +35,7 @@ angular.module('starter.services', [])
       total_cost : 0,
     };
 
-    $ionicModal.fromTemplateUrl('templates/trade-details.html', {
+    $ionicModal.fromTemplateUrl('templates/modal-trade-details.html', {
         scope:modalScope,
         animation: 'slide-in-up'
     })

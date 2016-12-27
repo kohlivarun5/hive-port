@@ -5,7 +5,6 @@ in ionic's _variables.scss file.
 For example, you might change some of the default colors:
 
 $light:                           #fff !default;
-$stable:                          #f8f8f8 !default;
 $positive:                        #387ef5 !default;
 $calm:                            #11c1f3 !default;
 $balanced:                        #33cd5f !default;
@@ -21,8 +20,19 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 $positive:                        #2980B9 !default;
 $energized:                       #FF9F55 !default;
 $assertive:                       #FC575E !default;
+$stable:                          #D8E2EC !default;
+
+.fill-stable,ion-content {
+  background-color:$stable !important;
+}
+
 
 // Include all of Ionic
 @import "../www/lib/ionic/scss/ionic";
+
+.tabs {
+  background-color:$light !important;
+}
+
 
 
