@@ -11,9 +11,13 @@ angular.module('starter.controllers', [])
 
   $scope.trades = Trades.getAll();
 
-  $scope.showTickerTrades = {};
+  $scope.selectedTicker="";
   $scope.toggleTicker = function (ticker) {
-    $scope.showTickerTrades[ticker] = !$scope.showTickerTrades[ticker];
+    if ($scope.selectedTicker === ticker) {
+      $scope.selectedTicker = "";
+    } else {
+      $scope.selectedTicker = ticker;
+    }
   };
 
   $scope.add = function() { 
