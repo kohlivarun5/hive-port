@@ -1,7 +1,7 @@
 <p>{{total_cost}}</p>
 <p ng-class="{'price-up':(change>0),'price-down':(change<0)}">
-  {{change<0 ? '(' : ''}}
   ${{quantity * price | abs | number: 2}}
-  {{change<0 ? ')' : ''}}
 </p>
-<p>{{total_cost}} {{(quantity * change*100/total_cost) | number: 2}}%</p>
+<p ng-class="{'price-up':(change>0),'price-down':(change<0)}">
+  {{(change*100/price) | number: 2}}%
+</p>
