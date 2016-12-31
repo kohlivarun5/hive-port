@@ -4,3 +4,11 @@
   border-radius:10px;
 }
 
+.item-position-summary {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.position-details-wrap {
+  padding-bottom:0px;
+}
