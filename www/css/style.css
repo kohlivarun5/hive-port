@@ -18,9 +18,12 @@
   padding-bottom:0px;
 }
 
-.right-align {
-  text-align:right;
-}
+.right-align { text-align:right; }
+.center-align { text-align:center;}
+
+.full-height { height:60px !important; }
+
+.first-position-margin { margin-top:70px !important;}
 
 .medium { font-size:14px; }
 

@@ -3,10 +3,22 @@
     <button class="button button-icon ion-android-add-circle" ng-click="add()"> </button>
   </ion-nav-buttons>
 
-  <ion-content>
-    <ion-list>
+  <div class="bar bar-subheader row center-align full-height">
+    <div class="col col-33 h4">$12312</div>
 
-    <div class="list card rounded card-position-summary"
+    <div class="col col-33 h5 normal" amount value="-0.1" post="'%'"></div>
+    <div class="col col-33 medium">
+      <div amount value="1234" pre="'$'"></div>
+      <div amount value="2.2" post="'%'"></div>
+    </div>
+  </div>
+
+  <ion-content>
+
+    <ion-list >
+
+    <div class="list card rounded card-position-summary 
+                {{$first ? 'first-position-margin' : ''}}"
          ng-repeat="(ticker,trades) in trades | groupBy: 'ticker'" >
 
 
