@@ -13,15 +13,7 @@
       <ion-item class="item-position-summary" on-tap="toggleTicker(ticker)">
         <div ng-repeat="quantity in [(trades | map: 'quantity' | sum | number: 2)]">
         <div ng-repeat="total_cost in [(trades | map: 'total_cost' | sum | number: 2)]">
-          <div class="row">
-            <div class="col col-25 h4">${{ticker}}</div>
-            <div class="col col-25"
-              price ticker="ticker" quantity="quantity" total_cost="total_cost">{{total_cost}} </div>
-            <div class="col col-25">
-              <p>{{quantity}}</p>
-              <p>Shares</p>
-            </div>
-            <div class="col col-25 right-align">${{total_cost}}</div>
+          <div position-summary ticker="ticker" quantity="quantity" total_cost="total_cost">
           </div>
         </div>
         </div>

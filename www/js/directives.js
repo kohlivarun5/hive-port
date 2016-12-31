@@ -1,7 +1,7 @@
 angular.module('starter.directives', [])
-.directive("price", function(StockPrices) {
+.directive("positionSummary", function(StockPrices) {
   return {
-    templateUrl:"templates/directive-price.html",
+    templateUrl:"templates/directive-position-summary.html",
     scope: {
       ticker: "=",
       quantity: "=",

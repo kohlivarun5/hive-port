@@ -1,8 +1,0 @@
-<p>{{total_cost}}</p>
-<p ng-class="{'price-up':(change>0),'price-down':(change<0)}">
-  ${{quantity * price | abs | number: 2}}
-</p>
-<p ng-class="{'price-up':(change>0),'price-down':(change<0)}">
-<i ng-class="{'ion-android-arrow-dropup':(change>0),'ion-android-arrow-dropdown':(change<0)}"></i>
-  {{(change*100/price) | abs | number: 2}}%
-</p>
