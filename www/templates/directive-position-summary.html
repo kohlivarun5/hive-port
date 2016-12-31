@@ -2,7 +2,10 @@
   <div class="col col-25 h4">${{ticker}}</div>
 
   <div class="col col-25 h5" amount value="change" post="'%'"></div>
-  <div class="col col-25 h5" amount value="net" pre="'$'"></div>
+  <div class="col col-25">
+    <div amount value="net" pre="'$'"></div>
+    <div amount value="net/cost*100" post="'%'"></div>
+  </div>
   <div class="col col-25 right-align">
     <p>MV:{{quantity*price | number:0}}</p>
     <p>Cost:{{cost | number:0}}</p>
