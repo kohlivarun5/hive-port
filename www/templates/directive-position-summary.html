@@ -1,19 +1,10 @@
 <div class="row">
   <div class="col col-25 h4">${{ticker}}</div>
 
-  <div class="col col-25 h5" ng-class="{'price-up':(change>0),'price-down':(change<0)}">
-    <div>
-      <i ng-class="{'ion-android-arrow-dropup':(change>0),'ion-android-arrow-dropdown':(change<0)}">
-      </i>
-      {{(change*100/price) | abs | number: 2}}%
-    </div>
-  </div>
-  <div class="col col-25">
-    ${{quantity * price | abs | number: 2}}
-  </div>
+  <div class="col col-25 h5" amount value="change" post="'%'"></div>
+  <div class="col col-25 h5" amount value="net" pre="'$'"></div>
   <div class="col col-25 right-align">
-    <p>{{quantity}}</p>
-    <p>Shares</p>
-
+    <p>MV:{{quantity*price | number:0}}</p>
+    <p>Cost:{{cost | number:0}}</p>
   </div>
 </div>
