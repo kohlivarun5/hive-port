@@ -4,12 +4,15 @@
   </ion-nav-buttons>
 
   <div class="bar bar-subheader row center-align full-height">
-    <div class="col col-33 h4">$12312</div>
+    <div class="col col-33 h4">${{portfolio_total_market_value | number:2}}</div>
 
-    <div class="col col-33 h5 normal" amount value="-0.1" post="'%'"></div>
+    <div class="col col-33 h5 normal"
+         amount value="portfolio_daily_change/portfolio_total_cost*100" post="'%'"></div>
+
     <div class="col col-33 medium">
-      <div amount value="1234" pre="'$'"></div>
-      <div amount value="2.2" post="'%'"></div>
+      <div amount value="portfolio_total_market_value - portfolio_total_cost" pre="'$'"></div>
+      <div amount value="(portfolio_total_market_value - portfolio_total_cost)/
+                          portfolio_total_cost*100" post="'%'"></div>
     </div>
   </div>
 
@@ -19,7 +22,7 @@
 
     <div class="list card rounded card-position-summary 
                 {{$first ? 'first-position-margin' : ''}}"
-         ng-repeat="(ticker,trades) in trades | groupBy: 'ticker'" >
+         ng-repeat="(ticker,trades) in trades | orderBy:'ticker' | groupBy: 'ticker'" >
 
 
       <ion-item class="item-position-summary" on-tap="toggleTicker(ticker)">

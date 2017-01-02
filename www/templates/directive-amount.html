@@ -1,7 +1,6 @@
-<div ng-class="{'price-up':(value>0),'price-down':(value<0)}">
+<div class="{{value > 0 ? 'price-up' : 'price-down'}}" >
   <div>
-    <i ng-class="{'ion-android-arrow-dropup':(value>0),'ion-android-arrow-dropdown':(value<0)}">
-    </i>
+    <i class="{{value > 0 ? 'ion-android-arrow-dropup' : 'ion-android-arrow-dropdown'}}"></i>
     {{pre}}{{value | abs | number:2}}{{post}}
   </div>
 </div>

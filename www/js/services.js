@@ -44,9 +44,14 @@ angular.module('starter.services', [])
       modalScope.modal=modal;
 
       modalScope.submit = function() {
-        console.log(modalScope.trade);
         modalScope.trade.quantity=parseInt(modalScope.trade.quantity);
         modalScope.trade.total_cost=parseFloat(modalScope.trade.total_cost);
+        if (modalScope.trade.quantity < 0) {
+          modalScope.trade.total_cost=Math.abs(modalScope.trade.total_cost) * -1;
+        } else {
+          modalScope.trade.total_cost=Math.abs(modalScope.trade.total_cost);
+        }
+
         if (!trade) { 
           allTrades.$add(modalScope.trade).then(function() { modal.hide(); });
         }
@@ -73,9 +78,7 @@ angular.module('starter.services', [])
   this.get = function (ticker,callback) {
     var query = 'select Change,LastTradePriceOnly from yahoo.finance.quote where symbol = "' + ticker + '"';
     var url = 'http://query.yahooapis.com/v1/public/yql?q=' + fixedEncodeURIComponent(query) + format;
-    console.log(url);
     $http.jsonp(url).success(function(data) {
-      console.log(data);
       callback(data.query.results.quote.LastTradePriceOnly,
                data.query.results.quote.Change);
     });

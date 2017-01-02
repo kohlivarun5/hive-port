@@ -12,7 +12,6 @@ angular.module('starter.directives', [])
         scope.price=parseFloat(price);
         scope.change=parseFloat(change);
         scope.net=(scope.quantity*scope.price)-scope.cost;
-        console.log(scope);
       });
     }
   };

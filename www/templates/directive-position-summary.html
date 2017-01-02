@@ -1,13 +1,13 @@
-<div class="row">
-  <div class="col col-25 h4">${{ticker}}</div>
+<div class="row position-summary-row">
+  <div class="col col-25 h4 ticker ">${{ticker}}</div>
 
   <div class="col col-25 h5 normal" amount value="(change*quantity/cost*100)" post="'%'"></div>
-  <div class="col col-25 medium">
+  <div class="col col-20 medium">
     <div amount value="net" pre="'$'"></div>
     <div amount value="net/cost*100" post="'%'"></div>
   </div>
-  <div class="col col-25 right-align">
-    <p>MV:{{quantity*price | number:0}}</p>
-    <p>Cost:{{cost | number:0}}</p>
+  <div class="col right-align">
+    <p>MV:{{quantity*price | number:0}}<span class="show-wide"> @ {{price | number:2}}</span></p>
+    <p>Cost:{{cost | number:0}}<span class="show-wide"> @ {{(cost/quantity) | number:2}}</span></p>
   </div>
 </div>
