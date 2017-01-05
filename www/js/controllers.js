@@ -8,7 +8,6 @@ angular.module('starter.controllers', [])
   //
   //$scope.$on('$ionicView.enter', function(e) {
   //});
-  $scope.trades = Trades.getAll();
   $scope.prices = {};
 
   $scope.portfolio_total_market_value=0;
@@ -40,10 +39,21 @@ angular.module('starter.controllers', [])
     });
   };
 
-  $scope.trades.$loaded().then(function() {
-    refresh();
-    $scope.trades.$watch(function(event) { refresh(event); });
-  });
+  $scope.doRefresh = function() {
+    $scope.prices={};
+    if ($scope.trades) {
+      $scope.trades.$destroy();
+    }
+    $scope.trades = Trades.getAll();
+    $scope.trades.$loaded().then(function() {
+      refresh();
+      $scope.trades.$watch(function(event) { refresh(event); });
+    });
+    //Stop the ion-refresher from spinning
+    $scope.$broadcast('scroll.refreshComplete');
+  };
+
+  $scope.doRefresh();
 
   $scope.selectedTicker="";
   $scope.toggleTicker = function (ticker) {
