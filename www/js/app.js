@@ -68,12 +68,12 @@ angular.module('starter', ['ionic','starter.directives','starter.filters','start
       }
     })
 
-  .state('tab.account', {
-    url: '/account',
+  .state('tab.deposits', {
+    url: '/deposits',
     views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
+      'tab-deposits': {
+        templateUrl: 'templates/tab-deposits.html',
+        controller: 'DepositsCtrl'
       }
     }
   });

@@ -3,7 +3,7 @@ angular.module('starter.controllers', [])
 .controller('SideMenuCtrl', function($scope,Settings) {
   Settings.get().$bindTo($scope, "settings");
 })
-.controller('PositionsCtrl', function($scope, $ionicListDelegate,Settings,Trades,StockPrices) {
+.controller('PositionsCtrl', function($scope, $ionicListDelegate,Settings,Trades,Prices) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -37,7 +37,7 @@ angular.module('starter.controllers', [])
                 $scope.prices[trade.ticker].change,
                 trade);
       } else {
-        StockPrices.get(trade.ticker,function(price,change) {
+        Prices.getStockPrice(trade.ticker,function(price,change) {
           onPrice(price,change,trade);
         });
       }
@@ -89,8 +89,54 @@ angular.module('starter.controllers', [])
   $scope.chat = Positions.get($stateParams.chatId);
 })
 
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
+.controller('DepositsCtrl', function($scope,$ionicListDelegate,Deposits,Prices) {
+
+  $scope.deposits = Deposits.getAll();
+
+  $scope.add = function() { 
+    Deposits.details(null,$scope.deposits); 
   };
+  $scope.update = function(deposit) { 
+    $ionicListDelegate.closeOptionButtons();
+    Deposits.details(deposit,$scope.deposits); 
+  };
+
+  $scope.delete = function(deposit) { 
+    $ionicListDelegate.closeOptionButtons();
+    Deposits.delete(deposit,$scope.deposits); 
+  };
+
+  $scope.portfolio_total_current_amount=0;
+  $scope.portfolio_total_cost=0;
+
+  var yearsDiff = function(to,from) {
+    return (to.getMonth() - from.getMonth())/12 + 
+            (to.getFullYear() - from.getFullYear());
+  };
+
+  var refresh = function(event) {
+    $scope.portfolio_total_current_amount=0;
+    $scope.portfolio_total_cost=0;
+
+    var onPrice = function(price,change,deposit) {
+      yDiff=yearsDiff(new Date(), new Date(deposit.start_date));
+      $scope.portfolio_total_current_amount+=
+        deposit.domestic_amount * 
+          deposit.base_foreign_fx *
+          (1+(deposit.foreign_interest_rate_percent_pa * yDiff)/100) /
+          price;
+      $scope.portfolio_total_cost+=deposit.domestic_amount;
+    };
+    angular.forEach($scope.deposits, function(deposit,index){
+      Prices.getFxRate(deposit.foreign_currency,function(price,change) {
+        onPrice(price,change,deposit);
+      });
+    });
+  };
+
+  $scope.deposits.$loaded().then(function() {
+    refresh();
+    $scope.deposits.$watch(function(event) { refresh(event); });
+  });
+
 });
