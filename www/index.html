@@ -60,6 +60,26 @@
       Templates are in the /templates folder (but you could also
       have templates inline in this html file if you'd like).
     -->
+
+<ion-side-menus ng-controller="SideMenuCtrl">
+  <!-- Left menu -->
+  <ion-side-menu side="left">
+    <ion-content>
+      <ion-list>
+        <ion-toggle  ng-model="settings.showClosedPositions">
+          Show closed positions
+        </ion-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+
+  <ion-side-menu-content>
+  <!-- Main content, usually <ion-nav-view> -->
     <ion-nav-view></ion-nav-view>
+  </ion-side-menu-content>
+
+</ion-side-menus>
+
+
   </body>
 </html>

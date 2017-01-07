@@ -6,16 +6,24 @@ angular.module('starter.services', [])
 
   var REFS = {
       root : FireBaseRef,
-      trades : FireBaseRef.child("trades")
+      trades : FireBaseRef.child("trades"),
+      settings : FireBaseRef.child("settings")
   };
 
   return {
     getTrades : function() {
       return $firebaseArray(REFS.trades);
     },
+    getSettings : function() {
+      return $firebaseObject(REFS.settings);
+    },
   };
 })
 
+.service('Settings',function(FirebaseSvc) {
+  var self = this;
+  this.get = FirebaseSvc.getSettings;
+})
 
 .service('Trades',function(FirebaseSvc,$ionicModal,$rootScope) {
 

@@ -1,6 +1,9 @@
 angular.module('starter.controllers', [])
 
-.controller('PositionsCtrl', function($scope, $ionicListDelegate, Trades,StockPrices) {
+.controller('SideMenuCtrl', function($scope,Settings) {
+  Settings.get().$bindTo($scope, "settings");
+})
+.controller('PositionsCtrl', function($scope, $ionicListDelegate,Settings,Trades,StockPrices) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -8,6 +11,8 @@ angular.module('starter.controllers', [])
   //
   //$scope.$on('$ionicView.enter', function(e) {
   //});
+  $scope.settings = Settings.get();
+
   $scope.prices = {};
 
   $scope.portfolio_total_market_value=0;

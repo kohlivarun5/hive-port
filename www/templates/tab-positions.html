@@ -25,18 +25,18 @@
 
     <ion-list >
 
-    <div class="list card rounded card-position-summary 
-                {{$first ? 'first-position-margin' : ''}}"
-         ng-repeat="(ticker,trades) in trades | orderBy:'ticker' | groupBy: 'ticker'" >
+    <div ng-repeat="(ticker,trades) in trades | orderBy:'ticker' | groupBy: 'ticker'"
+         ng-init="isFirstTicker = $first">
 
+      <div ng-repeat="quantity in [(trades | map: 'quantity' | sum )]">
+      <div ng-repeat="cost in [(trades | map: 'total_cost' | sum )]">
+      <div ng-if="settings.showClosedPositions || quantity"
+           class="list card rounded card-position-summary 
+                {{isFirstTicker ? 'first-position-margin' : ''}}">
 
       <ion-item class="item-position-summary" on-tap="toggleTicker(ticker)">
-        <div ng-repeat="quantity in [(trades | map: 'quantity' | sum )]">
-        <div ng-repeat="cost in [(trades | map: 'total_cost' | sum )]">
           <div position-summary ticker="ticker" quantity="quantity" cost="cost">
           </div>
-        </div>
-        </div>
       </ion-item>
 
       <div class="position-details-wrap animate-show" ng-show="selectedTicker==ticker">
@@ -59,6 +59,11 @@
           </ion-option-button>
         </ion-item>
       </div>
+
+      </div>
+      </div>
+      </div>
+
     </div>
 
     </ion-list>
